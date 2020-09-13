@@ -1,8 +1,14 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import M from 'materialize-css/dist/js/materialize'
+import getOrderList from '../common/getOrderList'
+import getTotalAmount from '../common/getTotalAmount'
 
-function ViewDetails_old({ customerDetails }) {
+
+
+function ViewDetails({ customerDetails, customers }) {
+
+    const ordersList = getOrderList(customers, customerDetails.phone)
 
 
     return (
@@ -13,22 +19,35 @@ function ViewDetails_old({ customerDetails }) {
                         <h4 className="center">Customer Details</h4><hr />
 
                         <div>
+
+                            <div className="card">
+                                <div className="card-content">
+                                    <h6>{customerDetails.name}</h6>
+                                    <h6>{customerDetails.phone}</h6>
+                                    <h6><b>{`Total amount -  ${getTotalAmount(ordersList)}`}</b></h6>
+                                </div>
+
+                            </div>
                             <table border="1">
                                 <thead>
                                     <tr>
                                         <th>Date</th>
-                                        <th>name</th>
-                                        <th>Phone</th>
                                         <th>Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr >
-                                        <td>{customerDetails.date}</td>
-                                        <td>{customerDetails.name}</td>
-                                        <td>{customerDetails.phone}</td>
-                                        <td>{customerDetails.amount}</td>
-                                    </tr>
+                                    {
+                                        ordersList.map(orders => {
+                                            return (
+                                                <tr key={orders.id}>
+                                                    <td>{orders.date}</td>
+                                                    <td>{orders.amount}</td>
+                                                </tr>
+
+                                            )
+                                        })
+                                    }
+
                                 </tbody>
                             </table>
                         </div>
@@ -47,14 +66,15 @@ function ViewDetails_old({ customerDetails }) {
 
 const modalStyle = {
     width: '75%',
-    height: '30%',
+    height: '80%',
 }
 
 const mapStateToProps = (state) => {
     return {
-        customerDetails: state.customerDetails
+        customerDetails: state.customerDetails,
+        customers: state.customers.customerData
     }
 }
 
 
-export default connect(mapStateToProps)(ViewDetails_old)
+export default connect(mapStateToProps)(ViewDetails)
