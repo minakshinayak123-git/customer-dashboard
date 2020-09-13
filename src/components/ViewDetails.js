@@ -36,9 +36,9 @@ function ViewDetails({ customerDetails }) {
                     </div>
 
                 </div>
-                <div className="modal-footer">
+                {/* <div className="modal-footer">
                     <a href="" className="modal-close waves-effect waves-green btn">Close</a>
-                </div>
+                </div> */}
             </div>
         </Fragment>
     )
@@ -46,7 +46,7 @@ function ViewDetails({ customerDetails }) {
 }
 
 const modalStyle = {
-    width: '50%',
+    width: '75%',
     height: '30%',
 }
 

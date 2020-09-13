@@ -7,7 +7,6 @@ import { filteredCustomers } from '../selectors/customerSelector'
 import CustomerList from './CustomerList'
 import getTotalAmount from '../common/getTotalAmount'
 import CustomerDistributionTable from './CustomerDistributionTable'
-import PdfDownload from './PdfDownload'
 import { BsCloudDownload } from 'react-icons/bs'
 import BarChart from './BarChart'
 
@@ -46,35 +45,42 @@ function Customer(props) {
     }
 
 
-    let filteredCustomer = filteredCustomers(props.unique, searchCustomer)
+    let filteredCustomer = filteredCustomers(props.customers, searchCustomer)
     return (
 
         <Fragment>
-            <div className="container">
+            <div className="container" style={{ marginBottom: "50px" }}>
                 <Link className="btn waves-effect blue waves-light" style={{ marginRight: "20px", borderRadius: "10px" }} to="/Home"><i className="arrow_back"></i>Back</Link>
                 <Link to="/pdf" className="btn waves-effect blue waves-light"><BsCloudDownload style={{ width: "40px" }}></BsCloudDownload>PDF</Link>
             </div>
-            {/* <div className="center">
-                <Link to="/pdf" className="btn waves-effect blue waves-light"><BsCloudDownload></BsCloudDownload>PDF</Link>
-            </div> */}
 
             <div className="container">
                 <div className="row">
                     <div className="col s12">
-                        <header><h3>Upload customer data : </h3></header>
-                    </div>
-                    <div className="input-field col s6">
 
-                        <input type="file" name="file" className="validate"
-                            onChange={(e) => onChangeHandler(e)}
-                            placeholder="upload file"
-                            style={{ marginBottom: "30px" }} />
+                        <div className="card">
+                            <div className="card-content">
+                                <header><h4 style={{ color: "maroon" }}>Upload customer data : </h4></header>
+
+                                <div className="input-field col s6">
+
+                                    <input type="file" name="file" className="validate"
+                                        onChange={(e) => onChangeHandler(e)}
+                                        placeholder="upload file"
+                                        style={{ marginBottom: "30px" }} />
+                                </div>
+
+                                <button className="btn waves-effect blue waves-light" type="submit" name="action"
+                                    onClick={onClickHandler}
+                                    style={{ marginBottom: "20px" }}>Upload customers
+                        </button>
+
+                            </div>
+
+                        </div>
+
                     </div>
 
-                    <button className="btn waves-effect blue waves-light" type="submit" name="action"
-                        onClick={onClickHandler}
-                        style={{ marginBottom: "20px" }}>Upload customers
-                    </button>
                     <div className="right">
                         <div className="card">
                             <div className="card-content">
@@ -93,9 +99,9 @@ function Customer(props) {
                     </div>
                 </div>
                 <div className="col s12">
-                <CustomerList searchCustomer={searchCustomer} unique={props.unique} handleSearchChange={handleSearchChange} filteredCustomer={filteredCustomer} />
+                    <CustomerList searchCustomer={searchCustomer} unique={props.unique} handleSearchChange={handleSearchChange} filteredCustomer={filteredCustomer} />
                 </div>
-                
+
             </div>
         </Fragment>
     )
