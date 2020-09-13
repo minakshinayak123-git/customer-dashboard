@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import M from 'materialize-css/dist/js/materialize'
 
-function ViewDetails({ customerDetails }) {
+function ViewDetails_old({ customerDetails }) {
 
 
     return (
@@ -36,9 +36,9 @@ function ViewDetails({ customerDetails }) {
                     </div>
 
                 </div>
-                {/* <div className="modal-footer">
-                    <a href="" className="modal-close waves-effect waves-green btn">Close</a>
-                </div> */}
+                <div className="modal-footer">
+                    <a href="#!" className="modal-close waves-effect waves-green btn">Close</a>
+                </div>
             </div>
         </Fragment>
     )
@@ -57,4 +57,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps)(ViewDetails)
+export default connect(mapStateToProps)(ViewDetails_old)
