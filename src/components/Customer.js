@@ -45,7 +45,7 @@ function Customer(props) {
     }
 
 
-    let filteredCustomer = filteredCustomers(props.customers, searchCustomer)
+    let filteredCustomer = filteredCustomers(props.unique, searchCustomer)
     return (
 
         <Fragment>

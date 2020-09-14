@@ -9,17 +9,14 @@ import getTotalAmount from '../common/getTotalAmount'
 function ViewDetails({ customerDetails, customers }) {
 
     const ordersList = getOrderList(customers, customerDetails.phone)
-
-
+    
     return (
         <Fragment>
             <div id="view_customer_info" className="modal" style={modalStyle}>
                 <div className="container">
                     <div className="modal-content">
                         <h4 className="center">Customer Details</h4><hr />
-
                         <div>
-
                             <div className="card">
                                 <div className="card-content">
                                     <h6>{customerDetails.name}</h6>
